@@ -23,6 +23,6 @@ Git 連携時は、Cloudflare Pages で次の値を指定します。
 
 - Build command: `pnpm build`
 - Build output directory: `dist`
-- Node.js version: `22.12.0` 以上
+- Node.js version: `22.13.0` 以上
 
 Wrangler でローカル確認する場合は `pnpm cf:dev`、公開する場合は Cloudflare にログイン後 `pnpm deploy` を実行します。
