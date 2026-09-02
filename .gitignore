@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+
+# Astro cache
+.astro/
+
+# local environment files
+.env
+.env.*
+!.env.example
+
+# Cloudflare local state
+.wrangler/
+
+# editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

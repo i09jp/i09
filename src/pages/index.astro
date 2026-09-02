@@ -1,0 +1,271 @@
+---
+import profileIconUrl from "../../asset/image/icon.webp?url";
+
+const pageTitle = "i09.jp / kisraki2021";
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="i09.jp" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <main>
+      <button
+        class="theme-toggle"
+        type="button"
+        aria-label="テーマを切り替える"
+      >
+        ダークモード
+      </button>
+      <div class="profile-heading">
+        <img
+          class="profile-icon"
+          src={profileIconUrl}
+          alt="i09のプロフィールアイコン"
+          loading="eager"
+        />
+        <h1>kisaraki2021 / i09.jp</h1>
+      </div>
+      <p class="lead">Last updated: 2026-09-02</p>
+      <hr />
+      <article class="content">
+        <h2>About</h2>
+        <p>MinecraftとかmiHoYoのゲームしてます</p>
+        <p>
+          kisaraki2021はネット寄り、i09はリアル寄りな気がするけどどっちでもいいです
+        </p>
+      </article>
+
+      <hr />
+      <h2>Links</h2>
+      <p>
+        Twitter(formerly X)
+        <a href="https://x.com/i09jp" target="_blank" rel="noreferrer">
+          @i09jp
+        </a>
+      </p>
+
+      <p>
+        Bluesky
+        <a
+          href="https://bsky.app/profile/i09.jp"
+          target="_blank"
+          rel="noreferrer"
+        >
+          @i09.jp
+        </a>
+
+        <p>
+          Instagram
+          <a
+            href="https://www.instagram.com/i09.jp/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            @i09.jp
+          </a>
+        </p>
+
+        <p>
+          GitHub
+          <a href="https://github.com/i09jp" target="_blank" rel="noreferrer">
+            @i09jp
+          </a>
+        </p>
+        <p>
+          Zenn
+          <a
+            href="https://zenn.dev/kisaraki2021"
+            target="_blank"
+            rel="noreferrer"
+          >
+            @kisaraki2021
+          </a>
+        </p>
+        <p>
+          Qiita
+          <a href="https://qiita.com/i09" target="_blank" rel="noreferrer">
+            @i09
+          </a>
+        </p>
+
+        <p>Discord@kisaraki2021</p>
+        <p>Matrix@kisaraki2021:matrix.org</p>
+        <p>Signal@i09.09</p>
+        <hr />
+      </p>
+    </main>
+  </body>
+</html>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".theme-toggle");
+  const root = document.documentElement;
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme) root.dataset.theme = savedTheme;
+
+  const updateToggleLabel = () => {
+    const isDark = root.dataset.theme === "dark";
+    toggle?.setAttribute("aria-label", isDark ? "Light Theme" : "Dark Theme");
+    if (toggle) toggle.textContent = isDark ? "Light Theme" : "Dark Theme";
+  };
+
+  toggle?.addEventListener("click", () => {
+    const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+    root.dataset.theme = nextTheme;
+    localStorage.setItem("theme", nextTheme);
+    updateToggleLabel();
+  });
+
+  updateToggleLabel();
+</script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap");
+
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(:root) {
+    color-scheme: light;
+    --background: #f1f3f6;
+    --foreground: #171714;
+    --muted: #55544e;
+    --content: #34332f;
+    --border: #d5d8dc;
+    --accent: #ca4b25;
+  }
+
+  :global(:root[data-theme="dark"]) {
+    color-scheme: dark;
+    --background: #151d28;
+    --foreground: #f1f3f6;
+    --muted: #b8bbc0;
+    --content: #d8d9dc;
+    --border: #3b3f45;
+    --accent: #ff8a62;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme])) {
+      color-scheme: dark;
+      --background: #17191c;
+      --foreground: #f1f3f6;
+      --muted: #b8bbc0;
+      --content: #d8d9dc;
+      --border: #3b3f45;
+      --accent: #ff8a62;
+    }
+  }
+
+  :global(body) {
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    color: var(--foreground);
+    background: var(--background);
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+  }
+
+  main {
+    position: relative;
+    width: min(100%, 64rem);
+  }
+
+  .theme-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.55rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--foreground);
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .content {
+    max-width: 42rem;
+    margin-top: 3rem;
+    color: var(--content);
+    font-size: 1rem;
+    line-height: 2;
+  }
+
+  .profile-heading {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    margin-left: clamp(-1.5rem, -2vw, -0.5rem);
+    padding-top: 4rem;
+  }
+
+  .profile-icon {
+    width: clamp(5.5rem, 11vw, 8rem);
+    aspect-ratio: 1;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  hr {
+    margin: 2rem 0 0;
+    border: 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .content p {
+    margin: 0;
+  }
+
+  .eyebrow {
+    margin: 0 0 1.25rem;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+  }
+
+  h1 {
+    margin: 0;
+    font-family: "M PLUS Rounded 1c";
+    font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+  }
+
+  .lead {
+    max-width: 38rem;
+    margin: 2.5rem 0 0;
+    color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 40rem) {
+    .profile-heading {
+      gap: 1rem;
+      margin-left: 0;
+    }
+
+    .profile-icon {
+      width: 4.5rem;
+    }
+  }
+</style>
